@@ -56,3 +56,5 @@ eureka:
 
 server:
   port: 7070
+
+custom-message: "This is message from config file of bankingapp-account-service via config server."
