@@ -21,4 +21,10 @@ eureka:
 server:
   port: 8111
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 custom-message: "This is message from config file of bankingapp-gateway-service via config server."
