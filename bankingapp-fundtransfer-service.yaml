@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: bankingapp-fundtransfer-service
+  devtools:
+    restart:
+      poll-interval: 2s
+      quiet-period: 1s
+
+debug: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  port: 7080
+
+custom-message: "This is message from config file of bankingapp-fundtransfer-service via config server."
