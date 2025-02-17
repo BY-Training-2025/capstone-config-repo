@@ -6,6 +6,9 @@ spring:
       poll-interval: 2s
       quiet-period: 1s
 
+  kafka:
+    bootstrap-servers: localhost:9092
+
   # Database configuration
   datasource:
     # for mysql db
