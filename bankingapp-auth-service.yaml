@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: bankingapp-auth-service
+
+  devtools:
+    restart:
+      poll-interval: 2s
+      quiet-period: 1s
+
+  # Database configuration
+  datasource:
+    # for postgres db
+    url: jdbc:postgresql://${REGISTRY_SERVER_HOST:localhost}:5432/capstone
+    username: postgres
+    password: postgres
+
+    # for h2 db
+  #    url: jdbc:h2:mem:capstone
+  #    username: accounts
+  #    password:
+
+  #Hibernate Configuration - database configuration is also required
+  jpa:
+    hibernate.ddl-auto: update
+    show-sql: true
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${REGISTRY_SERVER_HOST:localhost}:8761/eureka
+
+security:
+  jwt:
+    secret-key: bankingappsecurityjwtsecret
+#    token-duration: PT15M
+    token-duration: 1D
+
+server:
+  port: 8081
+
+debug: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+custom-message: "This is message from config file of bankingapp-auth-service via config server."
