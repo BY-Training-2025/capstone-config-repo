@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: bankingapp-notification-service
+  # devtools:
+  #   restart:
+  #     poll-interval: 2s
+  #     quiet-period: 1s
+
+  kafka:
+    bootstrap-servers: localhost:9092
+
+debug: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${REGISTRY_SERVER_HOST:localhost}:8761/eureka/
+    instance:
+      prefer-ip-address: true
+
+server:
+  port: 7070
+
+custom-message: "This is message from config file of bankingapp-account-service via config server."
