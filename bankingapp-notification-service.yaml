@@ -27,6 +27,6 @@ eureka:
       prefer-ip-address: true
 
 server:
-  port: 7070
+  port: 9001
 
-custom-message: "This is message from config file of bankingapp-account-service via config server."
+custom-message: "This is message from config file of bankingapp-notification-service via config server."
