@@ -10,7 +10,8 @@ spring:
   # Database configuration
   datasource:
     # for postgres db
-    url: jdbc:postgresql://${REGISTRY_SERVER_HOST:localhost}:5432/capstone
+    # url: jdbc:postgresql://${REGISTRY_SERVER_HOST:localhost}:5432/capstone
+    url: jdbc:postgresql://${POSTGRES_SERVER_HOST:localhost}:5432/capstone
     username: postgres
     password: postgres
 
