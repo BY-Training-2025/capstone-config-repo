@@ -6,6 +6,9 @@ spring:
       poll-interval: 2s
       quiet-period: 1s
 
+  kafka:
+    bootstrap-servers: ${KAFKA_SERVER_HOST:localhost:9092}
+    
   # Database configuration
   datasource:
     # for mysql db
@@ -47,8 +50,8 @@ eureka:
     fetch-registry: false
     service-url:
       defaultZone: http://${REGISTRY_SERVER_HOST:localhost}:8761/eureka/
-    instance:
-      prefer-ip-address: true      
+  instance:
+    prefer-ip-address: true      
 
 server:
   port: 7075
