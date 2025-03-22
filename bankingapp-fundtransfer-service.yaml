@@ -9,6 +9,27 @@ spring:
   kafka:
     bootstrap-servers: ${KAFKA_SERVER_HOST:localhost:9092}
 
+  # Database configuration
+  datasource:
+    # for postgres db
+    url: jdbc:postgresql://${POSTGRES_SERVER_HOST:localhost}:5432/capstone
+    username: postgres
+    password: postgres
+
+    # for h2 db
+#    url: jdbc:h2:mem:capstone
+#    username: accounts
+#    password:
+#    initialization-mode: always
+#    schema: classpath:/schema.sql
+#    data: classpath:/data.sql
+
+
+  #Hibernate Configuration - database configuration is also required
+  jpa:
+    hibernate.ddl-auto: update
+    show-sql: true    
+
 debug: true
 
 management:
