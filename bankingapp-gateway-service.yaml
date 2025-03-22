@@ -3,13 +3,58 @@ spring:
     name: bankingapp-gateway-service
   cloud:
     gateway:
-      routes:
-        - id: accountsRoute
-          uri: lb://bankingapp-account-service
-          predicates:
-            - Path=/bankingapp/api/accounts
-          filters:
-            - StripPrefix=2
+      mvc:
+        routes:
+          - id: accounts-route
+            uri: lb://bankingapp-account-service
+            predicates:
+              - Path=/bankingapp/api/accounts/**
+            filters:
+              - StripPrefix=2
+
+          - id: user-auth-route
+            uri: lb://bankingapp-auth-service
+            predicates:
+              - Path=/bankingapp/api/auth/**
+            filters:
+              - StripPrefix=2
+
+          - id: transaction-route
+            uri: lb://bankingapp-transaction-service
+            predicates:
+              - Path=/bankingapp/api/transactions/**
+            filters:
+              - StripPrefix=2
+
+          - id: fund-transfer-route
+            uri: lb://bankingapp-fundtransfer-service
+            predicates:
+              - Path=/bankingapp/api/fund-transfer/**
+            filters:
+              - StripPrefix=2
+
+          # api docs routes
+          - id: account-service-api
+            uri: lb://bankingapp-account-service
+            predicates:
+              - Path=/bankingapp/api/docs/account-service
+            filters:
+              - SetPath=/v3/api-docs
+
+          - id: transaction-service-api
+            uri: lb://bankingapp-transaction-service
+            predicates:
+              - Path=/bankingapp/api/docs/transaction-service
+            filters:
+              - SetPath=/v3/api-docs
+
+security:
+  jwt:
+    secret-key: bankingappsecurityjwtsecret
+#    token-duration: PT15M
+    token-duration: 1D
+
+debug: true
 
 eureka:
   client:
@@ -17,16 +62,17 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://${REGISTRY_SERVER_HOST:localhost}:8761/eureka/
-    instance:
-      prefer-ip-address: true      
-
-server:
-  port: 8111
+  instance:
+    prefer-ip-address: true
 
 management:
   endpoints:
     web:
       exposure:
         include: "*"
+
+server:
+  port: 8111
+
 
 custom-message: "This is message from config file of bankingapp-gateway-service via config server."
