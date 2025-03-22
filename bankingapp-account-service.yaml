@@ -7,7 +7,7 @@ spring:
       quiet-period: 1s
 
   kafka:
-    bootstrap-servers: ${KAFKA_SERVER_HOST:localhost}:9092
+    bootstrap-servers: ${KAFKA_SERVER_HOST:localhost:9092}
 
   # Database configuration
   datasource:
