@@ -7,7 +7,7 @@ spring:
       quiet-period: 1s
       
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${KAFKA_SERVER_HOST:localhost:9092}
 
 debug: true
 
@@ -23,8 +23,8 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://${REGISTRY_SERVER_HOST:localhost}:8761/eureka/
-    instance:
-      prefer-ip-address: true      
+  instance:
+    prefer-ip-address: true      
 
 server:
   port: 7080
